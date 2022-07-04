@@ -1,3 +1,4 @@
+use rocket::fs::{relative, FileServer};
 use rocket::http::Header;
 use rocket::response::stream::{Event, EventStream};
 use rocket::serde::{Deserialize, Serialize};
@@ -79,4 +80,5 @@ fn rocket() -> _ {
         .attach(CORS)
         .manage(channel::<Message>(1024).0)
         .mount("/", routes![index, post, events])
+        .mount("/", FileServer::from(relative!("front_end")))
 }
