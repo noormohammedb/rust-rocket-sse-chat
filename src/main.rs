@@ -81,5 +81,5 @@ fn rocket() -> _ {
         .attach(CORS)
         .manage(channel::<Message>(1024).0)
         .mount("/", routes![index, post, events])
-        .mount("/", FileServer::from(relative!("client-files")))
+        .mount("/", FileServer::from(relative!("/app/client-files")))
 }
