@@ -1,3 +1,5 @@
+use dotenv::dotenv;
+use rocket::fairing::{Fairing, Info, Kind};
 use rocket::fs::{relative, FileServer};
 use rocket::http::Header;
 use rocket::response::stream::{Event, EventStream};
@@ -6,8 +8,6 @@ use rocket::tokio::select;
 use rocket::tokio::sync::broadcast::{channel, error::RecvError, Sender};
 use rocket::{form::Form, State};
 use rocket::{Request, Response, Shutdown};
-
-use rocket::fairing::{Fairing, Info, Kind};
 
 pub struct CORS;
 
@@ -76,6 +76,7 @@ async fn events(queue: &State<Sender<Message>>, mut end: Shutdown) -> EventStrea
 
 #[launch]
 fn rocket() -> _ {
+    dotenv().ok();
     rocket::build()
         .attach(CORS)
         .manage(channel::<Message>(1024).0)
