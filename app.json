@@ -1,0 +1,11 @@
+{
+  "name": "rust_rocket_chat",
+  "description": "Rust sse application using the Rocket framework",
+  "repository": "https://github.com/noormohammedb/rust-rocket-sse-chat",
+  "success_url": "/",
+  "keywords": ["rust", "rocket"],
+  "website": "https://github.com/noormohammedb/rust-rocket-sse-chat",
+  "env": {
+    "BUILDPACK_URL": "https://github.com/emk/heroku-buildpack-rust.git"
+  }
+}
